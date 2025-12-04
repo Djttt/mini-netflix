@@ -69,7 +69,7 @@ export default function MovieCard(props: Movie) {
                 </CardMedia>
                 <CardContend>
                     <Typography  variant='h6' gutterBottom>
-                        {props.original_title}
+                        {props.title}
                     </Typography>
                 </CardContend>
                 <CardActions disableSpacing>    
