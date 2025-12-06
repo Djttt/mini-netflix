@@ -1,14 +1,15 @@
 import Card from '@mui/material/Card';
 import CardContend from '@mui/material/CardContent';
 import { styled } from '@mui/material/styles';
-import type { Movie } from '../../types/moive';
+import type { MovieTrending } from '../../types/moive';
 import { CardActions, CardMedia, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import IconButton, { type IconButtonProps } from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { IMAGE_BASE_URL_SMALL } from '../../constants/tmdbURL';
 
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500/';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -39,7 +40,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 
-export default function MovieCard(props: Movie) {
+export default function MovieCard(props: MovieTrending) {
     const [expanded, setExpanded] = useState(false);
 
     const handleExpandClick = () => {
@@ -55,7 +56,10 @@ export default function MovieCard(props: Movie) {
                     height: 'auto',
                 }}
              >
-                <CardMedia 
+                <Link
+                  to={`/movie/${props.id}`}
+                >
+                  <CardMedia 
                     component="img"
                     sx={{
                         width: '100%',
@@ -64,12 +68,29 @@ export default function MovieCard(props: Movie) {
                         borderRadius: 3,
                         objectFit: 'cover',
                     }}
-                    image={`${IMAGE_BASE_URL}${props.poster_path}`}
-                    alt={props.title}>
-                </CardMedia>
+                    image={`${IMAGE_BASE_URL_SMALL}${props.poster_path}`}
+                    alt={props.title}
+                    >
+                  </CardMedia>
+                </Link>
+
                 <CardContend>
-                    <Typography  variant='h6' gutterBottom>
+                    <Typography  
+                      variant='h6' 
+                      component={Link}
+                      to={`/movie/${props.id}`}
+                      sx={{ 
+                          textDecoration: 'none',
+                          color: 'inherit',
+                          '&:hover': {
+                              color: 'primary.main'
+                          },
+                      }}
+                    >
                         {props.title}
+                    </Typography>
+                    <Typography variant='body2'>
+                      {props.release_date}
                     </Typography>
                 </CardContend>
                 <CardActions disableSpacing>    

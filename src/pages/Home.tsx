@@ -2,10 +2,10 @@ import { Grid } from "@mui/material";
 import MovieCard from "../components/MovieCard/MovieCard";
 import { getTrendingMovies } from "../api/getTrendingMovies";
 import { useState, useEffect } from "react";
-import type { Movie } from "../types/moive";
+import type { MovieTrending } from "../types/moive";
 
 export default function Home() {
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<MovieTrending[]>([]);
   useEffect(() => {
     getTrendingMovies().then((data) => {
       setMovies(data.results);
@@ -20,6 +20,8 @@ export default function Home() {
         sx={{
           justifyContent: "center",
           alignItems: "center",
+          justifyItems: "center",
+          width: "100%",
         }}
       >
         {movies.map((movie) => (
