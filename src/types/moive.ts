@@ -87,3 +87,25 @@ export interface CreditsInfo {
     cast: Actor[],
     crew: Producer[],
 }
+
+
+export interface Backdrop {
+    aspect_ratio: number,
+    height: number,
+    width: number
+    file_path: string,
+}
+
+export interface Poster {
+    aspect_ratio: number,
+    height: number,
+    width: number,
+    file_path: string,
+}
+
+export interface MovieImagesMedia {
+    backdrops: Backdrop[],
+    posters: Poster[],
+}
+
+

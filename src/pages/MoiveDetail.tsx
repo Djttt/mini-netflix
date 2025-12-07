@@ -4,6 +4,7 @@ import Banner from '../components/Banner/Banner';
 import { type MovieDetail } from '../types/moive';
 import { getMovieDetail } from '../api/getMovieDetail';
 import MovieActorList from '../components/MovieActocList';
+import MovieMedia from '../components/MovieMedia';
 
 export default function MoiveDetail() {
     const { id } = useParams();
@@ -24,9 +25,11 @@ export default function MoiveDetail() {
             {
                 id && <MovieActorList id={parseInt(id)}></MovieActorList>
             }
-            
-            
 
+            {
+                id && <MovieMedia movieId={parseInt(id)}/>
+            }
+            
             <p>Movie ID is: {id}</p>
         </>
     )
