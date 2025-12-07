@@ -17,12 +17,12 @@ export interface MovieTrending {
 }
 
 
-type genresItem = {
+type GenresItem = {
     id: number, 
     name: string,
 }
 
-type country = {
+type Country = {
     iso_3166_1: string,
     name: string,
 }
@@ -31,7 +31,7 @@ export interface MovieDetail {
     adult: boolean,
     backdrop_path: string,
     budget: number,
-    genres: genresItem[],
+    genres: GenresItem[],
     homepage: string,
     id: number,
     imdb_id: string,
@@ -50,10 +50,10 @@ export interface MovieDetail {
     video: boolean,
     vote_average: number,
     vote_count: number,
-    production_countries: country[],
+    production_countries: Country[],
 }
 
-type actor = {
+export type Actor = {
     adult: boolean,
     gender: number,
     id: number,
@@ -68,7 +68,7 @@ type actor = {
     order: number,
 }
 
-type producer = {
+type Producer = {
     adult: boolean
     gender: number,
     id: number,
@@ -84,6 +84,6 @@ type producer = {
 
 export interface CreditsInfo {
     id: number,
-    cast: actor[],
-    crew: producer[],
+    cast: Actor[],
+    crew: Producer[],
 }

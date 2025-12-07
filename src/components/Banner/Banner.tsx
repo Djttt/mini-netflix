@@ -124,8 +124,6 @@ export default function Banner(props: MovieDetail) {
                 </Box>
 
             </Box>
-
-            <p>This is a banner component!</p>
         </>
     )
 }
