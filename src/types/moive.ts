@@ -108,4 +108,9 @@ export interface MovieImagesMedia {
     posters: Poster[],
 }
 
+export interface Keyword {
+    id: number,
+    name: string;
+}
+
 

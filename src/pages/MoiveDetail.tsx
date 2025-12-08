@@ -5,6 +5,8 @@ import { type MovieDetail } from '../types/moive';
 import { getMovieDetail } from '../api/getMovieDetail';
 import MovieActorList from '../components/MovieActocList';
 import MovieMedia from '../components/MovieMedia';
+import MovieInfoSidebar from '../components/MovieInfoSidebar';
+import { Box }  from "@mui/material";
 
 export default function MoiveDetail() {
     const { id } = useParams();
@@ -17,19 +19,42 @@ export default function MoiveDetail() {
     
     return (
         <>
+     
             {
                 movieDetail && <Banner {...movieDetail}></Banner>
                                 
             }
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                }}
+            >
+                <Box 
+                    sx={{
+                        width: "75%"
+                    }}
+                >
+                    {
+                        id && <MovieActorList id={parseInt(id)}></MovieActorList>
+                    }
 
-            {
-                id && <MovieActorList id={parseInt(id)}></MovieActorList>
-            }
+                    {
+                        id && <MovieMedia movieId={parseInt(id)}/>
+                    }
+                </Box>
+                <Box
+                    sx={{
+                        width: '25%',
+                        marginLeft: 8,
+                    }}
+                >
+                    {
+                        (id && movieDetail) && <MovieInfoSidebar movieId={parseInt(id)} movieDetail={movieDetail}></MovieInfoSidebar>
+                    }
+                </Box>
+            </Box>
 
-            {
-                id && <MovieMedia movieId={parseInt(id)}/>
-            }
-            
             <p>Movie ID is: {id}</p>
         </>
     )
