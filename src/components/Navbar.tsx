@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import MovieDropdown from "./navigation/MovieDropdown";
+import TVDropdown from "./navigation/TVDropdown";
 
 export default function Navbar() {
   return (
@@ -20,22 +22,13 @@ export default function Navbar() {
               </NavLink>
             </div>
 
-            <div className="hidden md:flex items-baseline space-x-4">
-              <NavLink
-                to="/moives"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Moive
-              </NavLink>
+            <div className="hidden md:flex items-baseline space-x-4 group relative">
+               <MovieDropdown />
             </div>
 
+
             <div className="hidden md:flex items-baseline space-x-4">
-              <NavLink
-                to="/TV-shows"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                TV shows
-              </NavLink>
+              <TVDropdown />
             </div>
 
             <div className="hidden md:flex items-baseline space-x-4">
