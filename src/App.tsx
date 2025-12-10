@@ -12,9 +12,9 @@ import NowPlaying from "./pages/movie_categroy/NowPlayingMovies";
 import TopRated from "./pages/movie_categroy/TopRatedMovies";
 import Upcoming from "./pages/movie_categroy/UpcomingMovies";
 
-import NowPlayingTV from "./pages/tv_categroy/NowPlayingTVs";
+import OnTheAirTV from "./pages/tv_categroy/OnTheAirTVs";
 import TopRatedTV from "./pages/tv_categroy/TopRatedTVs";
-import UpcomingTV from "./pages/tv_categroy/UpcomingTVs";
+import AiringTodayTVs from "./pages/tv_categroy/AiringTodayTVs";
 
 function App() {
   return (
@@ -29,9 +29,10 @@ function App() {
           <Route path="movie/top-rated" element={<TopRated />}></Route>
           <Route path="movie/upcoming" element={<Upcoming />}></Route>
 
-          <Route path="tv/now-playing" element={<NowPlayingTV />}></Route>
+          <Route path="tv" element={<Home />}></Route>
+          <Route path="tv/airing-today" element={<AiringTodayTVs />}></Route>
           <Route path="tv/top-rated" element={<TopRatedTV />}></Route>
-          <Route path="tv/upcoming" element={<UpcomingTV />}></Route>
+          <Route path="tv/on-the-air" element={<OnTheAirTV />}></Route>
 
 
           <Route path="movie/:id" element={<MoiveDetail />}></Route>

@@ -36,10 +36,10 @@ export default function TVDropdown() {
           今日播出
         </MenuItem>
         <MenuItem component={NavLink} to="/tv/top-rated">
-          电视播出
-        </MenuItem>
-        <MenuItem component={NavLink} to="/tv/upcoming">
           高分
+        </MenuItem>
+        <MenuItem component={NavLink} to="/tv/on-the-air">
+          电视播放
         </MenuItem>
       </Menu>
     </div>

@@ -1,7 +1,7 @@
 import Medias from "../../components/Medias";
 import { getAiringTodayTV } from "../../api/getTVShows/getTVShows";
 
-const UpcomingTV = () => {
+const AiringTodayTVs = () => {
   return (
     <>
       <Medias getMedias={getAiringTodayTV} />
@@ -9,4 +9,4 @@ const UpcomingTV = () => {
   );
 };
 
-export default UpcomingTV;
+export default AiringTodayTVs;
