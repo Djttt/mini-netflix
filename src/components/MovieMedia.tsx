@@ -1,7 +1,7 @@
 import { Divider, Box, Typography, Tabs, Tab, ImageList, ImageListItem } from "@mui/material"
 import type { MovieImagesMedia, Backdrop, Poster } from "../types/moive"
 import { useEffect, useState } from "react"
-import getMovieImages from "../api/getMovieImages";
+import getMovieImages from "../api/misc/movie/getMovieImages";
 import { IMAGE_BASE_URL_HD } from "../constants/tmdbURL";
 
 const MovieMedia = ({movieId}: {movieId: number}) => {

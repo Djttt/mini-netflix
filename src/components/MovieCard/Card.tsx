@@ -1,7 +1,7 @@
 import Card from '@mui/material/Card';
 import CardContend from '@mui/material/CardContent';
 import { styled } from '@mui/material/styles';
-import type { Movie } from '../../types/moive';
+import type { Media } from '../../types/moive';
 import { CardActions, CardMedia, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import IconButton, { type IconButtonProps } from '@mui/material/IconButton';
@@ -40,7 +40,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 
-export default function MovieCard(props: Movie) {
+export default function MovieCard(props: Media) {
     const [expanded, setExpanded] = useState(false);
 
     const handleExpandClick = () => {
@@ -57,7 +57,7 @@ export default function MovieCard(props: Movie) {
                 }}
              >
                 <Link
-                  to={`/movie/${props.id}`}
+                  to={ props.media_type === "movie" ? `/movie/${props.id}`: `/tv/${props.id}` }
                 >
                   <CardMedia 
                     component="img"
@@ -69,7 +69,7 @@ export default function MovieCard(props: Movie) {
                         objectFit: 'cover',
                     }}
                     image={`${IMAGE_BASE_URL_SMALL}${props.poster_path}`}
-                    alt={props.title}
+                    alt={props.media_type === "movie" ? props.title : props.name}
                     >
                   </CardMedia>
                 </Link>
@@ -87,10 +87,10 @@ export default function MovieCard(props: Movie) {
                           },
                       }}
                     >
-                        {props.title}
+                        {props.media_type === "movie" ? props.title : props.name }
                     </Typography>
                     <Typography variant='body2'>
-                      {props.release_date}
+                      {props.media_type === "movie" ? props.release_date : props.first_air_date}
                     </Typography>
                 </CardContend>
                 <CardActions disableSpacing>    

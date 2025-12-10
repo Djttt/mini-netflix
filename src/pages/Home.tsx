@@ -1,14 +1,12 @@
-import Movies from "../components/Movies";
+import Medias from "../components/Medias";
 import { getTrendingMovies } from "../api/getTrendingMovies";
 
-
 const Home = () => {
-    
-    return (
-        <>
-            <Movies getMovies={getTrendingMovies}/>
-        </>
-    )
-}
+  return (
+    <>
+      <Medias getMedias={getTrendingMovies} />
+    </>
+  );
+};
 
 export default Home;

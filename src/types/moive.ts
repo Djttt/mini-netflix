@@ -1,21 +1,32 @@
-export interface Movie {
-    adult: boolean,
-    backdrop_path: string,
-    id: number,
-    title: string,
-    original_title: string,
-    overview: string,
-    poster_path: string,
-    media_type: string,
-    original_language: string,
-    genre_ids: number[],
-    popularity: number,
-    release_date: string,
-    video: boolean,
-    voteAverage: number,
-    voteCount: number,
+interface BaseMedia {
+    adult: boolean;
+    backdrop_path: string;
+    id: number;
+    overview: string;
+    poster_path: string;
+    original_language: string;
+    genre_ids: number[];
+    popularity: number;
+    voteAverage: number;
+    voteCount: number;
 }
 
+export interface Movie extends BaseMedia{
+    title: string;
+    original_title: string;
+    media_type: "movie";
+    release_date: string;
+    video: boolean;
+}
+
+export interface TV extends BaseMedia {
+    name: string;
+    original_name: string;
+    media_type: "tv";
+    first_air_date: string;
+}
+
+export type Media = TV | Movie;
 
 type GenresItem = {
     id: number, 
@@ -51,6 +62,11 @@ export interface MovieDetail {
     vote_average: number,
     vote_count: number,
     production_countries: Country[],
+}
+
+export interface TVDetail extends MovieDetail {
+    name: string,
+    original_name: string;
 }
 
 export type Actor = {
@@ -107,6 +123,8 @@ export interface MovieImagesMedia {
     backdrops: Backdrop[],
     posters: Poster[],
 }
+
+export type TVImagesMedia = MovieImagesMedia;
 
 export interface Keyword {
     id: number,

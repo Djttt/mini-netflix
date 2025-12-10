@@ -1,21 +1,20 @@
 import { Grid, Box, Button } from "@mui/material";
-import MovieCard from "./MovieCard/MovieCard";
-import { getTrendingMovies } from "../api/getTrendingMovies";
+import Card from "./MovieCard/Card";
 import { useState, useEffect } from "react";
-import type { Movie } from "../types/moive";
+import type { Media } from "../types/moive";
 
-export default function Movies({ getMovies } : { getMovies: (page: number)=> Promise<{ results: Movie[] }> }) {
-  const [movies, setMovies] = useState<Movie[]>([]);
+export default function Medias({ getMedias } : { getMedias: (page: number)=> Promise<{ results: Media[] }> }) {
+  const [medias, setMedias] = useState<Media[]>([]);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    getMovies(1).then((data) => {
-      setMovies(data.results);})
+    getMedias(1).then((data) => {
+      setMedias(data.results);})
   }, []);
 
   const loadMovie = async (pageNumber: number) => {
-    const data = await getMovies(pageNumber);
-    setMovies((prev) => [...prev, ...data.results])
+    const data = await getMedias(pageNumber);
+    setMedias((prev) => [...prev, ...data.results])
   };
 
   const handleLoadMore = () => {
@@ -37,9 +36,9 @@ export default function Movies({ getMovies } : { getMovies: (page: number)=> Pro
         }}
       >
         {
-          movies.map((movie) => (
-            <Grid key={movie.id} size={{ sm: 12, xs: 12, md: 6, lg: 3 }}>
-              <MovieCard {...movie}></MovieCard>
+          medias.map((media) => (
+            <Grid key={media.id} size={{ sm: 12, xs: 12, md: 6, lg: 3 }}>
+              <Card {...media}></Card>
             </Grid>
           ))
         }
