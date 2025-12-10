@@ -5,7 +5,7 @@ import { type MovieDetail } from "../types/moive";
 import { getMovieDetail } from "../api/getMovies/getMovieDetail";
 import ActorList from "../components/ActocList";
 import Media from "../components/Media";
-import MovieInfoSidebar from "../components/MediaInfoSidebar";
+import MovieInfoSidebar from "../components/MovieInfoSidebar";
 import { Box } from "@mui/material";
 import { getMovieCredits } from "../api/misc/movie/getMovieCredits";
 import getMovieImages from "../api/misc/movie/getMovieImages";
@@ -53,8 +53,8 @@ export default function MoiveDetail() {
         >
           {id && movieDetail && (
             <MovieInfoSidebar
-              movieId={parseInt(id)}
-              movieDetail={movieDetail}
+              Id={parseInt(id)}
+              detail={movieDetail}
             ></MovieInfoSidebar>
           )}
         </Box>

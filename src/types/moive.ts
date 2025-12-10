@@ -89,7 +89,8 @@ export interface TVDetail{
     video: boolean,
     vote_average: number,
     vote_count: number,
-    production_countries: Country[],
+    production_countries: Country[],    
+    type: string,
 }
 
 export type Actor = {

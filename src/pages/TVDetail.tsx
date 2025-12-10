@@ -5,7 +5,7 @@ import { type TVDetail } from "../types/moive";
 import { getTVDetail } from "../api/getTVShows/getTVDetail";
 import ActorList from "../components/ActocList";
 import Media from "../components/Media";
-import MovieInfoSidebar from "../components/MediaInfoSidebar";
+import TVInfoSidebar from "../components/TVInfoSidebar";
 import { Box } from "@mui/material";
 import { getTVCredits } from "../api/misc/tv/getTVCredits";
 import getTVImages from "../api/misc/tv/getTVImages";
@@ -48,15 +48,15 @@ export default function TVDetail() {
           }}
         >
           {id && tvDetail && (
-            <MovieInfoSidebar
-              movieId={parseInt(id)}
-              movieDetail={tvDetail}
-            ></MovieInfoSidebar>
+            <TVInfoSidebar
+              Id={parseInt(id)}
+              detail={tvDetail}
+            ></TVInfoSidebar>
           )}
         </Box>
       </Box>
 
-      <p>Movie ID is: {id}</p>
+      <p>TV ID is: {id}</p>
     </>
   );
 }
