@@ -1,7 +1,7 @@
 import { getMediaInfo } from "../../getMediaInfo";
 
 const getTVKeywords = (tvId: number) => {
-  return getMediaInfo("movie", tvId, "keywords");
+  return getMediaInfo("tv", tvId, "keywords");
 };
 
 export default getTVKeywords;

@@ -24,6 +24,11 @@ export async function tmdbFetch(endpoint: string,
 
     const res = await fetch(url);
 
-    if (!res.ok) throw new Error("TMDB failed!!!");
+    if (!res.ok) {
+        console.log("failed url:", url);
+        throw new Error("TMDB failed!!!");
+    }
+        
+        
     return res.json();
 }
