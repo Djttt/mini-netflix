@@ -1,26 +1,26 @@
 import { Grid, Box, Button } from "@mui/material";
-import Card from "./MovieCard/Card";
+import MediaCard from "./MovieCard/Card";
 import { useState, useEffect } from "react";
 import type { Media } from "../types/moive";
 
-export default function Medias({ getMedias } : { getMedias: (page: number)=> Promise<{ results: Media[] }> }) {
+export default function Medias({ getMedias } : { getMedias: (page: number)=> Promise<Media[]> }) {
   const [medias, setMedias] = useState<Media[]>([]);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     getMedias(1).then((data) => {
-      setMedias(data.results);})
+      setMedias(data);})
   }, []);
 
-  const loadMovie = async (pageNumber: number) => {
+  const loadMedia = async (pageNumber: number) => {
     const data = await getMedias(pageNumber);
-    setMedias((prev) => [...prev, ...data.results])
+    setMedias((prev) => [...prev, ...data]);
   };
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
     setPage(nextPage);
-    loadMovie(nextPage);
+    loadMedia(nextPage);
   }
 
   return (
@@ -36,9 +36,9 @@ export default function Medias({ getMedias } : { getMedias: (page: number)=> Pro
         }}
       >
         {
-          medias.map((media) => (
+          medias && medias.map((media) => (
             <Grid key={media.id} size={{ sm: 12, xs: 12, md: 6, lg: 3 }}>
-              <Card {...media}></Card>
+              <MediaCard {...media}></MediaCard>
             </Grid>
           ))
         }
