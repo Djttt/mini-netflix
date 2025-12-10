@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import Banner from "../components/Banner/Banner";
 import { type MovieDetail } from "../types/moive";
 import { getMovieDetail } from "../api/getMovies/getMovieDetail";
-import MovieActorList from "../components/MovieActocList";
-import MovieMedia from "../components/MovieMedia";
-import MovieInfoSidebar from "../components/MovieInfoSidebar";
+import ActorList from "../components/ActocList";
+import Media from "../components/Media";
+import MovieInfoSidebar from "../components/MediaInfoSidebar";
 import { Box } from "@mui/material";
+import { getMovieCredits } from "../api/misc/movie/getMovieCredits";
+import getMovieImages from "../api/misc/movie/getMovieImages";
 
 export default function MoiveDetail() {
   const { id } = useParams();
@@ -14,8 +16,11 @@ export default function MoiveDetail() {
 
   useEffect(() => {
     if (!id) return;
-    getMovieDetail(parseInt(id)).then((data) => setMovieDetail(data));
+    getMovieDetail(parseInt(id)).then((data) =>
+      setMovieDetail({ ...data, media_type: "movie" })
+    );
   }, [id]);
+  console.log("movieDetail:", movieDetail);
 
   return (
     <>
@@ -31,9 +36,14 @@ export default function MoiveDetail() {
             width: "75%",
           }}
         >
-          {id && <MovieActorList id={parseInt(id)}></MovieActorList>}
+          {id && (
+            <ActorList
+              id={parseInt(id)}
+              getCredits={getMovieCredits}
+            ></ActorList>
+          )}
 
-          {id && <MovieMedia movieId={parseInt(id)} />}
+          {id && <Media Id={parseInt(id)} getImages={getMovieImages} />}
         </Box>
         <Box
           sx={{

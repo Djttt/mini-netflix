@@ -1,13 +1,16 @@
 import { Box, Typography } from "@mui/material"
-import type { MovieDetail } from "../../types/moive"
+import type { MovieDetail, TVDetail } from "../../types/moive"
 import { IMAGE_BASE_URL_HD, IMAGE_BASE_URL_SMALL } from "../../constants/tmdbURL"
 import UserScore from "./UserScore"
 import { Link } from "react-router"
-import MovieCreditsInfo from "./MoiveCreditsInfo"
+import MediaCreditsInfo from "./MediaCreditsInfo"
+import { getMovieCredits } from "../../api/misc/movie/getMovieCredits";
+import { getTVCredits } from "../../api/misc/tv/getTVCredits";
 
-export default function Banner(props: MovieDetail) {
+export default function Banner(props: MovieDetail | TVDetail) {
 
     console.log(IMAGE_BASE_URL_HD + props.backdrop_path)
+    
     return (
         <>
             <Box 
@@ -73,7 +76,7 @@ export default function Banner(props: MovieDetail) {
                         sx={{ flexShrink: 0 }} // 防止图片被压缩
                     >
                         <img 
-                            alt={props.title}
+                            alt={props.media_type === 'movie' ? props.title : props.name}
                             src={IMAGE_BASE_URL_SMALL + props.poster_path}
                             style={{
                                 borderRadius: '6px',
@@ -91,13 +94,13 @@ export default function Banner(props: MovieDetail) {
                             textAlign: 'left',
                         }}
                     >
-                        <MovieTitle {...props}></MovieTitle>
+                        <Title {...props}></Title>
                         
-                        <MovieScore voteAverage={props.vote_average}></MovieScore>
+                        <Score voteAverage={props.vote_average}></Score>
                         
                         <Typography variant="body2" sx={{ color: "grey", paddingTop: 2, fontStyle: "italic", fontSize: "1.1rem"}}>{props.tagline}</Typography>
                         
-                        {/* 电影overview */}
+                        {/* overview */}
                         <Box component='div' sx={{ paddingTop: 2}}>
                             <Typography variant="h5">简介</Typography>
                             <Typography 
@@ -118,8 +121,9 @@ export default function Banner(props: MovieDetail) {
                         </Box>
 
                         {/* 电影制片信息 */}
-                        <MovieCreditsInfo id={props.id}/>
-                        
+                        <MediaCreditsInfo id={props.id} getCredits={props.media_type === 'movie' ?
+                            getMovieCredits : getTVCredits
+                        }/>
                     </Box>
                 </Box>
 
@@ -129,14 +133,20 @@ export default function Banner(props: MovieDetail) {
 }
 
 
-function MovieTitle(props: MovieDetail) {
-    const year = props.release_date.split('-')[0];
-
+function Title(props: MovieDetail | TVDetail) {
+    let year: string | undefined;
+    if (props.media_type === "movie") {
+        year = props.release_date.split('-')[0];
+    } else {
+        year = props.first_air_date?.split('-')[0];
+    }
     function formatRuntime(minutes: number) {
         const h = Math.floor(minutes / 60);
         const m = minutes % 60;
         return `${h}h ${m}m`;
     }
+
+    console.log("hi", props.media_type);
 
     return (
         <>
@@ -159,7 +169,7 @@ function MovieTitle(props: MovieDetail) {
                                     }
                                 }}
                             >
-                                {props.title}{" "}
+                                {props.media_type === 'movie' ? props.title : props.name}{" "}
                             </Typography>
                             <Typography
                                 component="span"
@@ -182,7 +192,7 @@ function MovieTitle(props: MovieDetail) {
                     <Typography
                         component='span'
                     >
-                        {props.release_date}({props.production_countries[0].iso_3166_1})----
+                        {props.media_type === 'movie' ? props.release_date : props.first_air_date}({props.production_countries[0].iso_3166_1})----
                     </Typography>
 
                     {/* 电影分类 */}
@@ -196,7 +206,7 @@ function MovieTitle(props: MovieDetail) {
 
                     {/* 影片长度 */}
                     <Typography component='span'>   
-                        {formatRuntime(props.runtime)}
+                        {props.runtime && formatRuntime(props.runtime)}
                     </Typography>
                 </Box>
 
@@ -205,7 +215,7 @@ function MovieTitle(props: MovieDetail) {
     )
 }
 
-function MovieScore({voteAverage}: {voteAverage: number}) {
+function Score({voteAverage}: {voteAverage: number}) {
     
     return (
         <>

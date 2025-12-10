@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Banner from "../components/Banner/Banner";
 import { type TVDetail } from "../types/moive";
-import { getMovieDetail } from "../api/getMovies/getMovieDetail";
-import MovieActorList from "../components/MovieActocList";
-import MovieMedia from "../components/MovieMedia";
-import MovieInfoSidebar from "../components/MovieInfoSidebar";
+import { getTVDetail } from "../api/getTVShows/getTVDetail";
+import ActorList from "../components/ActocList";
+import Media from "../components/Media";
+import MovieInfoSidebar from "../components/MediaInfoSidebar";
 import { Box } from "@mui/material";
+import { getTVCredits } from "../api/misc/tv/getTVCredits";
+import getTVImages from "../api/misc/tv/getTVImages";
 
 export default function TVDetail() {
   const { id } = useParams();
@@ -14,7 +16,9 @@ export default function TVDetail() {
 
   useEffect(() => {
     if (!id) return;
-    getMovieDetail(parseInt(id)).then((data) => setTVDetail(data));
+    getTVDetail(parseInt(id)).then((data) =>
+      setTVDetail({ ...data, media_type: "tv" })
+    );
   }, [id]);
 
   return (
@@ -31,9 +35,11 @@ export default function TVDetail() {
             width: "75%",
           }}
         >
-          {id && <MovieActorList id={parseInt(id)}></MovieActorList>}
+          {id && (
+            <ActorList id={parseInt(id)} getCredits={getTVCredits}></ActorList>
+          )}
 
-          {id && <MovieMedia movieId={parseInt(id)} />}
+          {id && <Media Id={parseInt(id)} getImages={getTVImages} />}
         </Box>
         <Box
           sx={{

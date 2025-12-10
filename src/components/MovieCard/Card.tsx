@@ -40,12 +40,13 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 
-export default function MovieCard(props: Media) {
+export default function MediaCard(props: Media) {
     const [expanded, setExpanded] = useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+    console.log("media_type:", props.media_type);
 
     return (
         <>
@@ -78,7 +79,7 @@ export default function MovieCard(props: Media) {
                     <Typography  
                       variant='h6' 
                       component={Link}
-                      to={`/movie/${props.id}`}
+                      to={ props.media_type === "movie" ? `/movie/${props.id}`: `/tv/${props.id}` }
                       sx={{ 
                           textDecoration: 'none',
                           color: 'inherit',
