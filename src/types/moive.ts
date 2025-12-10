@@ -14,7 +14,7 @@ interface BaseMedia {
 export interface Movie extends BaseMedia{
     title: string;
     original_title: string;
-    media_type: "movie";
+    media_type: string;
     release_date: string;
     video: boolean;
 }
@@ -22,7 +22,7 @@ export interface Movie extends BaseMedia{
 export interface TV extends BaseMedia {
     name: string;
     original_name: string;
-    media_type: "tv";
+    media_type: string;
     first_air_date: string;
 }
 
@@ -45,6 +45,7 @@ export interface MovieDetail {
     genres: GenresItem[],
     homepage: string,
     id: number,
+    media_type: string,
     imdb_id: string,
     origin_country: string[],
     original_language: string,
@@ -64,9 +65,31 @@ export interface MovieDetail {
     production_countries: Country[],
 }
 
-export interface TVDetail extends MovieDetail {
+export interface TVDetail{
     name: string,
     original_name: string;
+    media_type: string,
+    adult: boolean,
+    backdrop_path: string,
+    budget: number,
+    genres: GenresItem[],
+    homepage: string,
+    id: number,
+    imdb_id: string,
+    origin_country: string[],
+    original_language: string,
+    overview: string,
+    popularity: number,
+    poster_path: string,
+    first_air_date: string | undefined,
+    tagline: string,
+    revenue: number,
+    runtime: number,
+    status: string,
+    video: boolean,
+    vote_average: number,
+    vote_count: number,
+    production_countries: Country[],
 }
 
 export type Actor = {
