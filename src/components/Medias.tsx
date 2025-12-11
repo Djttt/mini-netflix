@@ -3,7 +3,7 @@ import MediaCard from "./MovieCard/Card";
 import { useState, useEffect } from "react";
 import type { Media } from "../types/moive";
 
-export default function Medias({ getMedias } : { getMedias: (page: number)=> Promise<Media[]> }) {
+export default function Medias({ getMedias } : { getMedias: (page: number, query?: string)=> Promise<Media[]> }) {
   const [medias, setMedias] = useState<Media[]>([]);
   const [page, setPage] = useState(1);
 

@@ -1,8 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import MovieDropdown from "./navigation/MovieDropdown";
 import TVDropdown from "./navigation/TVDropdown";
+import SearchBar from "./Searchbar";
+import { searchTMDB } from "../api/searchTMDB";
 
 export default function Navbar() {
+
+  const navigate = useNavigate();
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ease-in-out bg-black bg-opacity-90">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,6 +48,9 @@ export default function Navbar() {
           </div>
           {/* Right side icons */}
           <div className="flex items-center">
+            <SearchBar onSearch={(q) => {
+              navigate(`/search?q=${q}`)
+            }}/>
             <p className="text-white">User</p>
           </div>
         </div>

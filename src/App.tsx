@@ -15,6 +15,8 @@ import Upcoming from "./pages/movie_categroy/UpcomingMovies";
 import OnTheAirTV from "./pages/tv_categroy/OnTheAirTVs";
 import TopRatedTV from "./pages/tv_categroy/TopRatedTVs";
 import AiringTodayTVs from "./pages/tv_categroy/AiringTodayTVs";
+import TrendingTVs from "./pages/tv_categroy/PopularTVs";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -29,7 +31,7 @@ function App() {
           <Route path="movie/top-rated" element={<TopRated />}></Route>
           <Route path="movie/upcoming" element={<Upcoming />}></Route>
 
-          <Route path="tv" element={<Home />}></Route>
+          <Route path="tv" element={<TrendingTVs />}></Route>
           <Route path="tv/airing-today" element={<AiringTodayTVs />}></Route>
           <Route path="tv/top-rated" element={<TopRatedTV />}></Route>
           <Route path="tv/on-the-air" element={<OnTheAirTV />}></Route>
@@ -37,6 +39,8 @@ function App() {
 
           <Route path="movie/:id" element={<MoiveDetail />}></Route>
           <Route path="tv/:id" element={<TVDetail />}></Route>
+
+          <Route path="/search" element={<SearchPage />}></Route>
           <Route path="*" element={<NoMatch></NoMatch>}></Route>
         </Route>
       </Routes>
