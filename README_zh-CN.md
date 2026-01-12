@@ -4,6 +4,8 @@
 
 [English](README.md) | [简体中文](README_zh-CN.md)
 
+![Mini Netflix Demo](assets/demo.gif)
+
 ## 功能特性
 
 - **电影**: 探索正在上映、好评如潮及即将上映的电影。

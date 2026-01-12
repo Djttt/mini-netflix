@@ -5,6 +5,8 @@
 
 A modern, responsive movie and TV show discovery application built with TMDB API. Browse trending content, search for your favorites, and view detailed information—all in a sleek interface.
 
+![Mini Netflix Demo](assets/demo.gif)
+
 ## Features
 
 - **Movies**: Discover Now Playing, Top Rated, and Upcoming movies.
